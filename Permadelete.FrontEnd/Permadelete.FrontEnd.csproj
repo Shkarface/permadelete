@@ -285,6 +285,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>echo "Swapping Key file..."
+if Not EXIST "$(SolutionDir)\Publish\Keys.cs" (
+	copy $(ProjectDir)\Helpers\Keys.cs $(SolutionDir)\Publish\Keys.cs /y 
+)
+
 copy $(ProjectDir)\Helpers\Keys.cs $(SolutionDir)\Publish\Keys-empty.cs /y 
 copy $(SolutionDir)\Publish\Keys.cs $(ProjectDir)\Helpers\Keys.cs /y</PreBuildEvent>
   </PropertyGroup>
